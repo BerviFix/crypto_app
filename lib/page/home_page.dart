@@ -35,5 +35,37 @@ class _HomePageState extends State<HomePage> {
                 radius: 15,
               ))
         ],
+        bottom: PreferredSize(
+          preferredSize: Size(double.infinity, 100),
+          child: Expanded(
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Il mio saldo",
+                      style: TextStyle(
+                        color: Colors.white54,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      "€ 1245.00",
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
       );
 }
