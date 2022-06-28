@@ -1,10 +1,9 @@
 // ignore_for_file: dead_code, unused_local_variable
 
 import 'package:crypto_app/models/crypto_listing_model.dart';
+import 'package:crypto_app/repositories/crypto_listing_repository.dart';
 import 'package:crypto_app/themes/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 import '../components/crypto_list_tile.dart';
 
@@ -19,41 +18,12 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    cryptoListingFuture = downloadCryptoData();
-  }
-
-  Future<List<CryptoListingModel>> downloadCryptoData() async {
-    final urlListing = Uri.parse(
-        "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest");
-
-    final responseListing = await http.get(urlListing, headers: {
-      "X-CMC_PRO_API_KEY": "6ec2edc3-b4c9-4f76-829f-b6a5818bc31e",
-    });
-
-    final jsonData = jsonDecode(responseListing.body);
-    final cryptoListing = (jsonData["data"] as List<dynamic>).map((cryptoData) {
-      return CryptoListingModel.fromData(cryptoData);
-    }).toList();
-
-    return cryptoListing;
-
-    // for (var i = 0; i <= cryptoListing.length; i++) {
-    //   final urlInfo = Uri.parse(
-    //       "https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?id=${cryptoListing[i].id}");
-
-    //   final responseInfo = await http.get(urlInfo, headers: {
-    //     "X-CMC_PRO_API_KEY": "6ec2edc3-b4c9-4f76-829f-b6a5818bc31e",
-    //   });
-
-    //   final jsonDataInfo = jsonDecode(responseInfo.body);
-
-    //   print(jsonDataInfo);
-    // }
+    cryptoListingFuture = CryptoListingRepository.all();
   }
 
   void refreshData() {
     setState(() {
-      cryptoListingFuture = downloadCryptoData();
+      cryptoListingFuture = CryptoListingRepository.all();
     });
   }
 
