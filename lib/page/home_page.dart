@@ -31,7 +31,8 @@ class _HomePageState extends State<HomePage> {
           IconButton(
               onPressed: () {},
               icon: CircleAvatar(
-                child: Image.network('https://is.gd/NpGJMI'),
+                backgroundImage: NetworkImage('https://is.gd/NpGJMI'),
+                radius: 15,
               ))
         ],
       );
