@@ -5,13 +5,17 @@ AppBar appBar() => AppBar(
       backgroundColor: ThemeColors.cardBackgroundColor,
       centerTitle: true,
       leading: IconButton(onPressed: () {}, icon: Icon(Icons.refresh_outlined)),
-      title: Text(
-        "Kraken",
-        style: TextStyle(
-          letterSpacing: 5,
-          color: Colors.purpleAccent,
-        ),
+      title: Image.network(
+        'https://i.ibb.co/4T6tnY3/coinmarketcap-white-1.png',
+        width: 180,
       ),
+      // Text(
+      //   "Kraken",
+      //   style: TextStyle(
+      //     letterSpacing: 5,
+      //     color: Colors.purpleAccent,
+      //   ),
+      // ),
       actions: [
         IconButton(
             onPressed: () {},
